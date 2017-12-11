@@ -1,0 +1,73 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>{{ title }}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha256-m/h/cUDAhf6/iBRixTbuc8+Rg2cIETQtPcH9D3p2Kg0=" crossorigin="anonymous">
+<style>
+  .page-outer {
+    width: 210mm;
+    height: 297mm;
+    padding-right: 25mm;
+    padding-bottom: 12mm;
+  }
+  .page-inner {
+    width: 185mm;
+    height: 285mm;
+    padding: 1cm;
+    border: 1px solid #000;
+  }
+  .photo {
+    margin-bottom: 1cm;
+  }
+  .steps {
+    font-size: smaller;
+  }
+  .ingredients {
+    font-size: smaller;
+    margin-left: -10mm;
+  }
+</style>
+<div class="page-outer">
+  <div class="page-inner">
+    <h1 class="display-4">{{ title }}</h1>
+    <div class="row">
+      <div class="col-8">
+        <img src="photo.jpg" class="photo img-fluid" alt="photo">
+        <h3>Steps</h3>
+        <div class="steps">
+          <ul>
+            {% for steps_group in steps %}                  
+              {% if steps_group is string %}
+                <li>{{ steps_group }}
+              {% else %}
+                <ul>
+                  {% for step in steps_group %}
+                    <li>{{ step }}
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="col-4">
+        <h3>Ingredients</h3>
+        <div class="ingredients">
+          <ul>
+            {% for ingredient_group in ingredients %}                  
+              {% if ingredient_group is string %}
+                <li>{{ ingredient_group }}
+              {% else %}
+                <ul>
+                  {% for ingredient in ingredient_group %}
+                    <li>{{ ingredient }}
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
